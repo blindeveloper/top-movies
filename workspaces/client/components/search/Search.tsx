@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { getMoviesBySearchValue } from '../../services/resources';
-import { Movie } from '../../services/interfaces';
+import { MovieInterface, SearchProps } from '../../services/interfaces';
+import { DEBOUNCE_TIMER } from '@scribbr-assessment-full-stack/common';
 
-const Search: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
+  const [movies, setMovies] = useState<MovieInterface[]>([]);
   const [searchRequest, setSearchRequest] = useState<string>('');
-  const [debouncedSearchRequest] = useDebounce(searchRequest, 500);
+  const [debouncedSearchRequest] = useDebounce(searchRequest, DEBOUNCE_TIMER);
 
   const handleMovieSearch = async () => {
     const movieResponse = await getMoviesBySearchValue(1, searchRequest);
     if (movieResponse.error) {
-      throw new Error(movieResponse.error);
+      setIsErrorState(true);
     } else {
       setMovies(movieResponse.data);
     }

@@ -4,7 +4,7 @@
 2. [DONE]Build <Search/> component as connector to OMDb API
 3. [DONE]Trigger search event on input change
 4. [DONE]Add debounce to the search input for avoiding spamming of the API
-5. Handle API response. [data + error state]
+5. [DONE]Handle API response. [data + error state]
 6. Show list of movies in result area if 200
 7. Write tests for search results
 

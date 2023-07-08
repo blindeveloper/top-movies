@@ -1,15 +1,19 @@
-import { APP_TITLE } from '@scribbr-assessment-full-stack/common';
-import React from 'react';
-import Search from '../components/search/search';
-
+import React, { useState } from 'react';
+import Search from '../components/search/Search';
+import ErrorMessage from '../components/errorMessage/ErrorMessage';
 import './index.css';
 
-export function App() {
+const App: React.FC = () => {
+  const [isErrorState, setIsErrorState] = useState<boolean>(false);
   return (
-    <div>
-      <h1>Welcome to {APP_TITLE}!</h1>
-      <p>This would be probably the starting point of your app.</p>
-      <Search />
-    </div>
+    <>
+      {isErrorState ? (
+        <ErrorMessage />
+      ) : (
+        <Search setIsErrorState={setIsErrorState} />
+      )}
+    </>
   );
-}
+};
+
+export default App;

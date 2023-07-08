@@ -1,8 +1,9 @@
 import axios from 'axios';
-
-const OMDB = {
-  API_KEY: '8fc6c84a',
-  URL: 'http://www.omdbapi.com/',
+import { MovieInterface } from './interfaces';
+import { OMDB } from '@scribbr-assessment-full-stack/common';
+type GetMovieResponseType = {
+  error: Error;
+  data: MovieInterface[];
 };
 
 export const getMoviesBySearchValue = (
@@ -13,16 +14,16 @@ export const getMoviesBySearchValue = (
 
   return axios
     .get(request)
-    .then((response) => {
+    .then((response): GetMovieResponseType => {
       return {
         error: null,
         data: response.data?.Search,
       };
     })
-    .catch(function (error) {
+    .catch(function (error: Error): GetMovieResponseType {
       return {
         error: error,
-        data: null,
+        data: [],
       };
     });
 };
