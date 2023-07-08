@@ -1,10 +1,3 @@
-export interface MovieInterface {
-  id: string;
-  year: string;
-  title: string;
-  poster: string;
-}
-
 export interface MovieApiItemInterface {
   Poster: string;
   Title: string;
@@ -15,4 +8,9 @@ export interface MovieApiItemInterface {
 
 export interface SearchProps {
   setIsErrorState: (value: boolean) => void;
+}
+
+export interface MovieItemProps {
+  movie: MovieApiItemInterface;
+  key: string;
 }

@@ -5,7 +5,7 @@
 3. [DONE]Trigger search event on input change
 4. [DONE]Add debounce to the search input for avoiding spamming of the API
 5. [DONE]Handle API response. [data + error state]
-6. Show list of movies in result area if 200
+6. [DONE]Show list of movies in result area if 200
 7. Write tests for search results
 
 ### [TM-0002] I want to add movie to the movie list
