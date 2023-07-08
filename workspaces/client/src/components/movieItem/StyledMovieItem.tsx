@@ -8,6 +8,7 @@ export const MovieItemWrapper = styled.div`
   padding: 5px 10px;
   border-radius: 6px;
   margin-bottom: 20px;
+  min-height: 50px;
   &:hover {
     background-color: #f5fafe;
     button {

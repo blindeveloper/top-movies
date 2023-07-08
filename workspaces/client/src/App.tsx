@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Search from '../components/search/Search';
-import ErrorMessage from '../components/errorMessage/ErrorMessage';
+import Search from './components/search/Search';
+import ErrorMessage from './components/errorMessage/ErrorMessage';
 import './index.css';
 
 const App: React.FC = () => {
