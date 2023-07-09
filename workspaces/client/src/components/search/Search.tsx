@@ -4,7 +4,7 @@ import { getMoviesBySearchValue } from '../../services/resources';
 import { MovieApiItemInterface, SearchProps } from '../../services/interfaces';
 import { DEBOUNCE_TIMER } from '@scribbr-assessment-full-stack/common';
 import MovieItem from '../movieItem/MovieItem';
-import { SearchWrapper, SearchInput } from './StyledSearch.jsx';
+import { SearchWrapper, SearchInput } from './Styled.Search';
 import { Container, Row, Col } from 'react-grid-system';
 
 const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {

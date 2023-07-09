@@ -19,12 +19,16 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie }) => {
         <Col xs={7}>
           <Row>
             <Col xs={12}>
-              <MovieItemTitle>{movie.Title}</MovieItemTitle>
+              <MovieItemTitle data-testid={`${movie.imdbID}-movie-title`}>
+                {movie.Title}
+              </MovieItemTitle>
             </Col>
           </Row>
           <Row>
             <Col xs={12}>
-              <MovieItemSubtitle>{movie.Year}</MovieItemSubtitle>
+              <MovieItemSubtitle data-testid={`${movie.imdbID}-movie-year`}>
+                {movie.Year}
+              </MovieItemSubtitle>
             </Col>
           </Row>
         </Col>
