@@ -10,7 +10,7 @@ export const getMoviesBySearchValue = (
   pageCount: number,
   searchValue: string
 ) => {
-  const request = `${OMDB.URL}?apikey=${OMDB.API_KEY}&s=${searchValue}&p=${pageCount}`;
+  const request = `${OMDB.URL}?apikey=${OMDB.API_KEY}&s=${searchValue}&page=${pageCount}`;
 
   return axios
     .get(request)

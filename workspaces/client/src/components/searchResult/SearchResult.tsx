@@ -1,12 +1,13 @@
 import React from 'react';
 import MovieItem from '../movieItem/MovieItem';
-import { SearchRequestWrapper } from './SearchRequestWrapper';
+import { SearchRequestWrapper, LoadMore } from './SearchResultStyled';
 import { SearchResultProps } from '../../services/interfaces';
 
 const SearchResult: React.FC<SearchResultProps> = ({
   searchRequest,
   movies,
   handleAddMovieToTopList,
+  increasePageCounter,
 }) => {
   return (
     <>
@@ -19,6 +20,10 @@ const SearchResult: React.FC<SearchResultProps> = ({
               handleAddMovieToTopList={handleAddMovieToTopList}
             />
           ))}
+
+          <LoadMore onClick={() => increasePageCounter()}>
+            Load more 🏋️
+          </LoadMore>
         </SearchRequestWrapper>
       ) : null}
     </>

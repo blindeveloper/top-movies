@@ -43,16 +43,24 @@ const Mutation = new GraphQLObjectType({
       type: MovieType,
       args: movieTypeFields,
       resolve(parent, args) {
-        const newMovie = {
-          id: args.id,
-          title: args.title,
-          year: args.year,
-          poster: args.poster,
-          popularity: 1,
-        };
-        topMovies.push(newMovie);
+        if (topMovies.find((el) => el.id === args.id)) {
+          topMovies = topMovies.map((el) => {
+            if (el.id === args.id) {
+              el.popularity += 1;
+            }
+            return el;
+          });
+        } else {
+          topMovies.push({
+            id: args.id,
+            title: args.title,
+            year: args.year,
+            poster: args.poster,
+            popularity: 1,
+          });
+        }
         topMovies = topMovies.sort((a, b) => b.popularity - a.popularity);
-        return newMovie;
+        return { id: args.id };
       },
     },
     upVoteMovie: {

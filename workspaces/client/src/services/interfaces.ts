@@ -26,6 +26,7 @@ export interface SearchResultProps {
   searchRequest: string;
   movies: MovieItemInterface[];
   handleAddMovieToTopList?: (movie: MovieItemInterface) => void;
+  increasePageCounter: () => void;
 }
 
 export interface TopMoviesListProps {

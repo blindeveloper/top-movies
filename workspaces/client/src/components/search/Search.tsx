@@ -19,20 +19,29 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
 
   const [movies, setMovies] = useState<MovieItemInterface[]>([]);
   const [searchRequest, setSearchRequest] = useState<string>('');
+  const [pageCounter, setPageCounter] = useState<number>(1);
   const [debouncedSearchRequest] = useDebounce(searchRequest, DEBOUNCE_TIMER);
 
   useEffect(() => {
-    debouncedSearchRequest && handleMovieSearch();
+    handleMovieSearch();
+  }, [pageCounter]);
+
+  useEffect(() => {
+    handleMovieSearch();
+    setMovies([]);
+    setPageCounter(1);
   }, [debouncedSearchRequest]);
   const handleMovieSearch = async () => {
+    if (!debouncedSearchRequest) return;
     const movieResponse: { error: Error; data } = await getMoviesBySearchValue(
-      1,
+      pageCounter,
       searchRequest
     );
     if (movieResponse.error) {
       setIsErrorState(true);
     } else {
-      movieResponse?.data && setMovies(formatMovieResponse(movieResponse.data));
+      movieResponse?.data &&
+        setMovies([...movies, ...formatMovieResponse(movieResponse.data)]);
     }
   };
 
@@ -73,6 +82,7 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
         searchRequest={searchRequest}
         movies={movies}
         handleAddMovieToTopList={handleAddMovieToTopList}
+        increasePageCounter={() => setPageCounter(pageCounter + 1)}
       />
       <TopMoviesList
         searchRequest={searchRequest}
