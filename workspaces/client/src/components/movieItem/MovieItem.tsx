@@ -36,7 +36,7 @@ const MovieItem: React.FC<MovieItemProps> = ({
             </Col>
           </Row>
         </Col>
-        <Col xs={3}>
+        <Col xs={3} data-testid={`${movie.id}-movie-action-button`}>
           {movie.popularity ? (
             <UpVote>{`🤍 ${movie.popularity}`}</UpVote>
           ) : (

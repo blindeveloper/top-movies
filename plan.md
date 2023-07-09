@@ -16,7 +16,7 @@
 11. [DONE]Send request addTopMovie with movie ID
 12. [DONE]Handle addTopMovie response. [data + error state]
 13. [DONE]Show new movie in the movie list if 200
-14. Write tests for adding movie to the movie list
+14. [DONE]Write tests for adding movie to the movie list
 
 ### [TM-0003] I want to upvote movies and see total popularity of each movie in the list
 

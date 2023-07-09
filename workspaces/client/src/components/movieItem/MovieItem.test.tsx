@@ -4,35 +4,49 @@ import MovieItem from './MovieItem';
 
 const propsList = [
   {
-    movie: {
-      poster: 'https://imgurl.jpg',
-      title: 'Koko-di Koko-da',
-      year: '2019',
-      id: 'tt9355200',
+    prop: {
+      movie: {
+        poster: 'https://imgurl.jpg',
+        title: 'Koko-di Koko-da',
+        year: '2019',
+        id: 'wfwefwe',
+        popularity: 10,
+      },
+      key: '345rf',
     },
-    key: '2e',
+    result: {
+      actionButtonText: '🤍 10',
+    },
   },
   {
-    movie: {
-      poster: 'https://imfnelgurl.jpg',
-      title: 'John Week',
-      year: '2005',
-      id: 'tt93jj55200',
+    prop: {
+      movie: {
+        poster: 'https://imfnelgurl.jpg',
+        title: 'John Week',
+        year: '2005',
+        id: 'tt93jj55200',
+      },
+      key: '2ef2f',
     },
-    key: '2ef2f',
+    result: {
+      actionButtonText: 'Add to List',
+    },
   },
 ];
 
 describe('---MovieItem Component test---', () => {
   it('should check correct data fields', () => {
-    propsList.map((prop) => {
-      render(<MovieItem {...prop} />);
+    propsList.map((el) => {
+      render(<MovieItem {...el.prop} />);
       expect(
-        screen.getByTestId(`${prop.movie.id}-movie-title`).innerHTML
-      ).toEqual(prop.movie.title);
+        screen.getByTestId(`${el.prop.movie.id}-movie-title`).innerHTML
+      ).toEqual(el.prop.movie.title);
       expect(
-        screen.getByTestId(`${prop.movie.id}-movie-year`).innerHTML
-      ).toEqual(prop.movie.year);
+        screen.getByTestId(`${el.prop.movie.id}-movie-year`).innerHTML
+      ).toEqual(el.prop.movie.year);
+      expect(
+        screen.getByTestId(`${el.prop.movie.id}-movie-action-button`).innerHTML
+      ).toContain(el.result.actionButtonText);
     });
   });
 });
