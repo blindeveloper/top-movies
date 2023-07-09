@@ -12,5 +12,6 @@ export interface SearchProps {
 
 export interface MovieItemProps {
   movie: MovieApiItemInterface;
+  handleAddMovieToTopList: (movie: MovieApiItemInterface) => void;
   key: string;
 }

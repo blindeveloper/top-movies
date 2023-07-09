@@ -8,7 +8,7 @@ const {
   GraphQLID,
 } = graphql;
 
-const topMovies = [
+let topMovies = [
   {
     id: 'tt9355200',
     title: 'Koko-di Koko-da',
@@ -25,15 +25,17 @@ const topMovies = [
   },
 ];
 
+const movieTypeFields = {
+  id: { type: GraphQLID },
+  title: { type: GraphQLString },
+  type: { type: GraphQLString },
+  year: { type: GraphQLString },
+  poster: { type: GraphQLString },
+};
+
 const MovieType = new GraphQLObjectType({
   name: 'Movie',
-  fields: () => ({
-    id: { type: GraphQLID },
-    title: { type: GraphQLString },
-    type: { type: GraphQLString },
-    year: { type: GraphQLString },
-    poster: { type: GraphQLString },
-  }),
+  fields: () => movieTypeFields,
 });
 
 const RootQuery = new GraphQLObjectType({
@@ -48,6 +50,28 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addTopMovie: {
+      type: MovieType,
+      args: movieTypeFields,
+      resolve(parent, args) {
+        const newMovie = {
+          id: args.id,
+          title: args.title,
+          type: args.type,
+          year: args.year,
+          poster: args.poster,
+        };
+        topMovies.push(newMovie);
+        return newMovie;
+      },
+    },
+  },
+});
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });

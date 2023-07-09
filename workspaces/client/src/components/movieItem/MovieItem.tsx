@@ -9,7 +9,10 @@ import {
   AddToList,
 } from './StyledMovieItem';
 
-const MovieItem: React.FC<MovieItemProps> = ({ movie }) => {
+const MovieItem: React.FC<MovieItemProps> = ({
+  movie,
+  handleAddMovieToTopList,
+}) => {
   return (
     <MovieItemWrapper>
       <Row align="center">
@@ -33,7 +36,13 @@ const MovieItem: React.FC<MovieItemProps> = ({ movie }) => {
           </Row>
         </Col>
         <Col xs={3}>
-          <AddToList>Add to List</AddToList>
+          <AddToList
+            onClick={() => {
+              handleAddMovieToTopList(movie);
+            }}
+          >
+            Add to List
+          </AddToList>
         </Col>
       </Row>
     </MovieItemWrapper>

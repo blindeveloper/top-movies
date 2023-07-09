@@ -12,9 +12,9 @@
 
 8. [DONE]Add movie schema
 9. [DONE]Handle topMovies query
-10. Add addTopMovie event on movie click
-11. Send request addTopMovie with movie ID
-12. Handle addTopMovie response. [data + error state]
+10. [DONE]Add addTopMovie event/mutation on movie click
+11. [DONE]Send request addTopMovie with movie ID
+12. [DONE]Handle addTopMovie response. [data + error state]
 13. Show new movie in the movie list if 200
 14. Write tests for adding movie to the movie list
 
