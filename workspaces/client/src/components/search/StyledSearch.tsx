@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchWrapper = styled.div`
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
 `;
 export const SearchInput = styled.input`

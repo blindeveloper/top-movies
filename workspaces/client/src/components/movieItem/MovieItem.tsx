@@ -3,6 +3,7 @@ import { MovieItemProps } from '../../services/interfaces';
 import { Row, Col } from 'react-grid-system';
 import {
   Poster,
+  NoPoster,
   MovieItemWrapper,
   MovieItemTitle,
   MovieItemSubtitle,
@@ -19,7 +20,11 @@ const MovieItem: React.FC<MovieItemProps> = ({
     <MovieItemWrapper>
       <Row align="center">
         <Col xs={2}>
-          <Poster src={movie.poster} />
+          {movie.poster === 'N/A' ? (
+            <NoPoster>🎞️</NoPoster>
+          ) : (
+            <Poster src={movie.poster} />
+          )}
         </Col>
         <Col xs={7}>
           <Row>

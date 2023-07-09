@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const Poster = styled.img`
   width: 100%;
 `;
+export const NoPoster = styled.span`
+  font-size: 35px;
+`;
 
 export const MovieItemWrapper = styled.div`
   padding: 5px 10px;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container } from 'react-grid-system';
 import Search from './components/search/Search';
 import ErrorMessage from './components/errorMessage/ErrorMessage';
-import { SearchWrapper } from './components/search/Styled.Search';
+import { SearchWrapper } from './components/search/StyledSearch';
 
 import './index.css';
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieItem from '../movieItem/MovieItem';
+import { SearchRequestWrapper } from './SearchRequestWrapper';
 import { SearchResultProps } from '../../services/interfaces';
 
 const SearchResult: React.FC<SearchResultProps> = ({
@@ -9,15 +10,17 @@ const SearchResult: React.FC<SearchResultProps> = ({
 }) => {
   return (
     <>
-      {searchRequest &&
-        movies &&
-        movies.map((movie) => (
-          <MovieItem
-            key={movie.id}
-            movie={movie}
-            handleAddMovieToTopList={handleAddMovieToTopList}
-          />
-        ))}
+      {searchRequest && movies.length ? (
+        <SearchRequestWrapper>
+          {movies.map((movie) => (
+            <MovieItem
+              key={movie.id}
+              movie={movie}
+              handleAddMovieToTopList={handleAddMovieToTopList}
+            />
+          ))}
+        </SearchRequestWrapper>
+      ) : null}
     </>
   );
 };

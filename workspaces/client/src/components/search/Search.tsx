@@ -4,7 +4,7 @@ import { useDebounce } from 'use-debounce';
 import { getMoviesBySearchValue } from '../../services/resources';
 import { MovieItemInterface, SearchProps } from '../../services/interfaces';
 import { DEBOUNCE_TIMER } from '@scribbr-assessment-full-stack/common';
-import { SearchInput } from './Styled.Search';
+import { SearchInput } from './StyledSearch';
 import { Row, Col } from 'react-grid-system';
 import { GET_TOP_MOVIES } from '../../queries';
 import { ADD_TOP_MOVIE, UP_VOTE_MOVIE } from '../../mutations';
