@@ -20,19 +20,19 @@
 
 ### [TM-0003] I want to upvote movies and see total popularity of each movie in the list
 
-14. Add heart icon for movie upvoting
-15. Add upvote event on heart click
-16. Add upvote listener
-17. Send request upvote with movie ID
-18. Handle upvote response. [data + error state]
-19. Show upvoted movie in the list if 200
-20. Send upvote movie request if on addTopMovie request, movie already exists in the list
+14. [DONE]Add heart icon for movie upvoting
+15. [DONE]Add upvote event on heart click
+16. [DONE]Add upvote listener
+17. [DONE]Send request upvote with movie ID
+18. [DONE]Handle upvote response. [data + error state]
+19. [DONE]Show upvoted movie in the list if 200
+20. [DONE]Send upvote movie request if on addTopMovie request, movie already exists in the list
 21. Write tests upvoting logic
 
 ### [TM-0004] I want to sort movies
 
-21. Render list sorted by the number of upvotes
-22. Trigger sorting functionality on each upvote event
+21. [DONE] Render list sorted by the number of upvotes
+22. [DONE] Trigger sorting functionality on each upvote event
 23. Write tests for sorting logic
 
 ### Movie schema
@@ -47,9 +47,9 @@
 
 ### queries
 
-`getFavoriteMovies => [movie]`
+`topMovies => [movie]`
 
 ### mutations
 
-`addMovieToMovieList(movie) => movie`
-`upvoteMovie(id) => movie`
+`addTopMovie(movie) => movie`
+`upVoteMovie(id) => movie`

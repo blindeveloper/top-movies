@@ -50,8 +50,26 @@ const Mutation = new GraphQLObjectType({
           poster: args.poster,
           popularity: 1,
         };
-        topMovies.unshift(newMovie);
+        topMovies.push(newMovie);
+        topMovies = topMovies.sort((a, b) => b.popularity - a.popularity);
         return newMovie;
+      },
+    },
+    upVoteMovie: {
+      type: MovieType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        topMovies = topMovies.map((el) => {
+          if (el.id === args.id) {
+            el.popularity += 1;
+          }
+          return el;
+        });
+        topMovies = topMovies.sort((a, b) => b.popularity - a.popularity);
+
+        return {
+          id: args.id,
+        };
       },
     },
   },

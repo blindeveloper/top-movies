@@ -19,5 +19,22 @@ export interface SearchProps {
 export interface MovieItemProps {
   movie: MovieItemInterface;
   handleAddMovieToTopList?: (movie: MovieItemInterface) => void;
+  handleUpVoteMovie?: (id: string) => void;
   key: string;
+}
+export interface SearchResultProps {
+  searchRequest: string;
+  movies: MovieItemInterface[];
+  handleAddMovieToTopList?: (movie: MovieItemInterface) => void;
+}
+
+export interface TopMoviesListProps {
+  searchRequest: string;
+  topMovies: {
+    loading: boolean;
+    data: {
+      topMovies: MovieItemInterface[];
+    };
+  };
+  handleUpVoteMovie?: (id: string) => void;
 }

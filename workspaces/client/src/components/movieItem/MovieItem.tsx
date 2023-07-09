@@ -13,6 +13,7 @@ import {
 const MovieItem: React.FC<MovieItemProps> = ({
   movie,
   handleAddMovieToTopList,
+  handleUpVoteMovie,
 }) => {
   return (
     <MovieItemWrapper>
@@ -38,7 +39,9 @@ const MovieItem: React.FC<MovieItemProps> = ({
         </Col>
         <Col xs={3} data-testid={`${movie.id}-movie-action-button`}>
           {movie.popularity ? (
-            <UpVote>{`🤍 ${movie.popularity}`}</UpVote>
+            <UpVote
+              onClick={() => handleUpVoteMovie(movie.id)}
+            >{`🤍 ${movie.popularity}`}</UpVote>
           ) : (
             <AddToList
               onClick={() => {

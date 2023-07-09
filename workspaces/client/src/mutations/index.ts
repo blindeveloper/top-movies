@@ -12,3 +12,11 @@ export const ADD_TOP_MOVIE = gql`
     }
   }
 `;
+
+export const UP_VOTE_MOVIE = gql`
+  mutation UpVoteMovie($id: ID!) {
+    upVoteMovie(id: $id) {
+      id
+    }
+  }
+`;

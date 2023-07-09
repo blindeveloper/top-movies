@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useDebounce } from 'use-debounce';
 import { getMoviesBySearchValue } from '../../services/resources';
 import { MovieItemInterface, SearchProps } from '../../services/interfaces';
 import { DEBOUNCE_TIMER } from '@scribbr-assessment-full-stack/common';
-import MovieItem from '../movieItem/MovieItem';
 import { SearchInput } from './Styled.Search';
 import { Row, Col } from 'react-grid-system';
 import { GET_TOP_MOVIES } from '../../queries';
-import { ADD_TOP_MOVIE } from '../../mutations';
+import { ADD_TOP_MOVIE, UP_VOTE_MOVIE } from '../../mutations';
 import { formatMovieResponse } from '../../services/tools';
+import SearchResult from '../searchResult/SearchResult';
+import TopMoviesList from '../topMoviesList/TopMoviesList';
 
 const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
   const [addTopMovie] = useMutation(ADD_TOP_MOVIE);
+  const topMovies = useQuery(GET_TOP_MOVIES);
+  const [uvVoteMovie] = useMutation(UP_VOTE_MOVIE);
 
   const [movies, setMovies] = useState<MovieItemInterface[]>([]);
   const [searchRequest, setSearchRequest] = useState<string>('');
   const [debouncedSearchRequest] = useDebounce(searchRequest, DEBOUNCE_TIMER);
 
+  useEffect(() => {
+    debouncedSearchRequest && handleMovieSearch();
+  }, [debouncedSearchRequest]);
   const handleMovieSearch = async () => {
     const movieResponse: { error: Error; data } = await getMoviesBySearchValue(
       1,
@@ -26,13 +32,18 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
     if (movieResponse.error) {
       setIsErrorState(true);
     } else {
-      movieResponse && setMovies(formatMovieResponse(movieResponse.data));
+      movieResponse?.data && setMovies(formatMovieResponse(movieResponse.data));
     }
   };
 
-  useEffect(() => {
-    debouncedSearchRequest && handleMovieSearch();
-  }, [debouncedSearchRequest]);
+  const handleUpVoteMovie = (movieId) => {
+    uvVoteMovie({
+      variables: {
+        id: movieId,
+      },
+      refetchQueries: [{ query: GET_TOP_MOVIES }],
+    });
+  };
 
   const handleAddMovieToTopList = (movie: MovieItemInterface) => {
     addTopMovie({
@@ -58,15 +69,16 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
           />
         </Col>
       </Row>
-      {searchRequest &&
-        movies &&
-        movies.map((movie) => (
-          <MovieItem
-            key={movie.id}
-            movie={movie}
-            handleAddMovieToTopList={handleAddMovieToTopList}
-          />
-        ))}
+      <SearchResult
+        searchRequest={searchRequest}
+        movies={movies}
+        handleAddMovieToTopList={handleAddMovieToTopList}
+      />
+      <TopMoviesList
+        searchRequest={searchRequest}
+        topMovies={topMovies}
+        handleUpVoteMovie={handleUpVoteMovie}
+      />
     </>
   );
 };
