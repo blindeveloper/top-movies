@@ -10,12 +10,13 @@
 
 ### [TM-0002] I want to add movie to the movie list
 
-8. Add addToMovieList event on movie click
-9. Add movie schema + addToMovieList listener
-10. Send request addToMovieList with movie ID
-11. Handle addToMovieList response. [data + error state]
-12. Show new movie in the movie list if 200
-13. Write tests for adding movie to the movie list
+8. [DONE]Add movie schema
+9. [DONE]Handle topMovies query
+10. Add addTopMovie event on movie click
+11. Send request addTopMovie with movie ID
+12. Handle addTopMovie response. [data + error state]
+13. Show new movie in the movie list if 200
+14. Write tests for adding movie to the movie list
 
 ### [TM-0003] I want to upvote movies and see total popularity of each movie in the list
 
@@ -25,7 +26,7 @@
 17. Send request upvote with movie ID
 18. Handle upvote response. [data + error state]
 19. Show upvoted movie in the list if 200
-20. Send upvote movie request if on addToMovieList request, movie already exists in the list
+20. Send upvote movie request if on addTopMovie request, movie already exists in the list
 21. Write tests upvoting logic
 
 ### [TM-0004] I want to sort movies
