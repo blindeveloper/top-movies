@@ -9,7 +9,15 @@ const {
   GraphQLInt,
 } = graphql;
 
-let topMovies = [];
+interface MovieItemInterface {
+  poster: string;
+  title: string;
+  year: string;
+  id: string;
+  popularity?: number;
+}
+
+let topMoviesList: Object = {};
 
 const movieTypeFields = {
   id: { type: GraphQLID },
@@ -24,13 +32,23 @@ const MovieType = new GraphQLObjectType({
   fields: () => movieTypeFields,
 });
 
+//TODO cover with tests
+//TODO cover with types
+const getTopMovieListAsArray = () => {
+  let topMoviesArray: MovieItemInterface[] = [];
+  for (const [key, value] of Object.entries(topMoviesList)) {
+    topMoviesArray.push(value);
+  }
+  return topMoviesArray;
+};
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     topMovies: {
       type: new GraphQLList(MovieType),
       resolve(parent, args) {
-        return topMovies;
+        return getTopMovieListAsArray();
       },
     },
   },
@@ -43,41 +61,30 @@ const Mutation = new GraphQLObjectType({
       type: MovieType,
       args: movieTypeFields,
       resolve(parent, args) {
-        if (topMovies.find((el) => el.id === args.id)) {
-          topMovies = topMovies.map((el) => {
-            if (el.id === args.id) {
-              el.popularity += 1;
-            }
-            return el;
-          });
+        if (topMoviesList[args.id]) {
+          topMoviesList[args.id].popularity += 1;
         } else {
-          topMovies.push({
+          topMoviesList[args.id] = {
             id: args.id,
             title: args.title,
             year: args.year,
             poster: args.poster,
             popularity: 1,
-          });
+          };
         }
-        topMovies = topMovies.sort((a, b) => b.popularity - a.popularity);
-        return { id: args.id };
+
+        return topMoviesList[args.id];
       },
     },
     upVoteMovie: {
       type: MovieType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        topMovies = topMovies.map((el) => {
-          if (el.id === args.id) {
-            el.popularity += 1;
-          }
-          return el;
-        });
-        topMovies = topMovies.sort((a, b) => b.popularity - a.popularity);
+        if (topMoviesList[args.id]) {
+          topMoviesList[args.id].popularity += 1;
+        }
 
-        return {
-          id: args.id,
-        };
+        return topMoviesList[args.id];
       },
     },
   },

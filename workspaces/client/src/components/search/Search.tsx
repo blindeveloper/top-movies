@@ -50,7 +50,6 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
       variables: {
         id: movieId,
       },
-      refetchQueries: [{ query: GET_TOP_MOVIES }],
     });
   };
 

@@ -11,15 +11,17 @@ const TopMoviesList: React.FC<TopMoviesListProps> = ({
     <>
       {!searchRequest &&
         !topMovies.loading &&
-        topMovies.data.topMovies.map((movie) => {
-          return (
-            <MovieItem
-              key={movie.id}
-              movie={movie}
-              handleUpVoteMovie={handleUpVoteMovie}
-            />
-          );
-        })}
+        [...topMovies.data?.topMovies]
+          .sort((a, b) => b.popularity - a.popularity)
+          .map((movie) => {
+            return (
+              <MovieItem
+                key={movie.id}
+                movie={movie}
+                handleUpVoteMovie={handleUpVoteMovie}
+              />
+            );
+          })}
     </>
   );
 };
