@@ -15,7 +15,7 @@
 10. [DONE]Add addTopMovie event/mutation on movie click
 11. [DONE]Send request addTopMovie with movie ID
 12. [DONE]Handle addTopMovie response. [data + error state]
-13. Show new movie in the movie list if 200
+13. [DONE]Show new movie in the movie list if 200
 14. Write tests for adding movie to the movie list
 
 ### [TM-0003] I want to upvote movies and see total popularity of each movie in the list

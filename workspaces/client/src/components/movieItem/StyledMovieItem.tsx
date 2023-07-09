@@ -32,3 +32,13 @@ export const AddToList = styled.button`
   cursor: pointer;
   width: 100%;
 `;
+
+export const UpVote = styled.button`
+  background-color: #fc5215;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  width: 100%;
+`;

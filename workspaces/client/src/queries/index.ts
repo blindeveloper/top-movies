@@ -5,9 +5,9 @@ export const GET_TOP_MOVIES = gql`
     topMovies {
       id
       title
-      type
       year
       poster
+      popularity
     }
   }
 `;

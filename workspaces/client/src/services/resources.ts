@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { MovieApiItemInterface } from './interfaces';
+import { MovieItemInterface } from './interfaces';
 import { OMDB } from '@scribbr-assessment-full-stack/common';
 type GetMovieResponseType = {
   error: Error;
-  data: MovieApiItemInterface[];
+  data: MovieItemInterface[];
 };
 
 export const getMoviesBySearchValue = (

@@ -5,21 +5,19 @@ import MovieItem from './MovieItem';
 const propsList = [
   {
     movie: {
-      Poster: 'https://imgurl.jpg',
-      Title: 'Koko-di Koko-da',
-      Type: 'movie',
-      Year: '2019',
-      imdbID: 'tt9355200',
+      poster: 'https://imgurl.jpg',
+      title: 'Koko-di Koko-da',
+      year: '2019',
+      id: 'tt9355200',
     },
     key: '2e',
   },
   {
     movie: {
-      Poster: 'https://imfnelgurl.jpg',
-      Title: 'John Week',
-      Type: 'movie',
-      Year: '2005',
-      imdbID: 'tt93jj55200',
+      poster: 'https://imfnelgurl.jpg',
+      title: 'John Week',
+      year: '2005',
+      id: 'tt93jj55200',
     },
     key: '2ef2f',
   },
@@ -30,11 +28,11 @@ describe('---MovieItem Component test---', () => {
     propsList.map((prop) => {
       render(<MovieItem {...prop} />);
       expect(
-        screen.getByTestId(`${prop.movie.imdbID}-movie-title`).innerHTML
-      ).toEqual(prop.movie.Title);
+        screen.getByTestId(`${prop.movie.id}-movie-title`).innerHTML
+      ).toEqual(prop.movie.title);
       expect(
-        screen.getByTestId(`${prop.movie.imdbID}-movie-year`).innerHTML
-      ).toEqual(prop.movie.Year);
+        screen.getByTestId(`${prop.movie.id}-movie-year`).innerHTML
+      ).toEqual(prop.movie.year);
     });
   });
 });

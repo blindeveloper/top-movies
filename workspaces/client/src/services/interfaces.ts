@@ -1,9 +1,15 @@
 export interface MovieApiItemInterface {
   Poster: string;
   Title: string;
-  Type: string;
   Year: string;
   imdbID: string;
+}
+export interface MovieItemInterface {
+  poster: string;
+  title: string;
+  year: string;
+  id: string;
+  popularity?: number;
 }
 
 export interface SearchProps {
@@ -11,7 +17,7 @@ export interface SearchProps {
 }
 
 export interface MovieItemProps {
-  movie: MovieApiItemInterface;
-  handleAddMovieToTopList: (movie: MovieApiItemInterface) => void;
+  movie: MovieItemInterface;
+  handleAddMovieToTopList?: (movie: MovieItemInterface) => void;
   key: string;
 }

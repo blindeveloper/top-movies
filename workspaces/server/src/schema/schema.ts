@@ -6,31 +6,17 @@ const {
   GraphQLList,
   GraphQLString,
   GraphQLID,
+  GraphQLInt,
 } = graphql;
 
-let topMovies = [
-  {
-    id: 'tt9355200',
-    title: 'Koko-di Koko-da',
-    type: 'movie',
-    year: '2019',
-    poster: 'https://imgurl.jpg',
-  },
-  {
-    id: 'tt93jj55200',
-    title: 'John Week',
-    type: 'movie',
-    year: '2005',
-    poster: 'https://imfnelgurl.jpg',
-  },
-];
+let topMovies = [];
 
 const movieTypeFields = {
   id: { type: GraphQLID },
   title: { type: GraphQLString },
-  type: { type: GraphQLString },
   year: { type: GraphQLString },
   poster: { type: GraphQLString },
+  popularity: { type: GraphQLInt },
 };
 
 const MovieType = new GraphQLObjectType({
@@ -60,11 +46,11 @@ const Mutation = new GraphQLObjectType({
         const newMovie = {
           id: args.id,
           title: args.title,
-          type: args.type,
           year: args.year,
           poster: args.poster,
+          popularity: 1,
         };
-        topMovies.push(newMovie);
+        topMovies.unshift(newMovie);
         return newMovie;
       },
     },
