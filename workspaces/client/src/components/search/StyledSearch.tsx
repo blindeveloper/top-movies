@@ -12,3 +12,7 @@ export const SearchInput = styled.input`
   padding: 0 10px;
   margin-bottom: 20px;
 `;
+
+export const Notification = styled.p`
+  text-align: center;
+`;

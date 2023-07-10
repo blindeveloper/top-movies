@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchRequestWrapper = styled.div`
-  height: 300px;
+  max-height: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
   border: 1px solid #7c84a3;

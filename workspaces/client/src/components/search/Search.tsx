@@ -4,7 +4,7 @@ import { useDebounce } from 'use-debounce';
 import { getMoviesBySearchValue } from '../../services/resources';
 import { MovieItemInterface, SearchProps } from '../../services/interfaces';
 import { DEBOUNCE_TIMER } from '@scribbr-assessment-full-stack/common';
-import { SearchInput } from './StyledSearch';
+import { SearchInput, Notification } from './StyledSearch';
 import { Row, Col } from 'react-grid-system';
 import { GET_TOP_MOVIES } from '../../queries';
 import { ADD_TOP_MOVIE, UP_VOTE_MOVIE } from '../../mutations';
@@ -19,7 +19,9 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
 
   const [movies, setMovies] = useState<MovieItemInterface[]>([]);
   const [searchRequest, setSearchRequest] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [pageCounter, setPageCounter] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [debouncedSearchRequest] = useDebounce(searchRequest, DEBOUNCE_TIMER);
 
   useEffect(() => {
@@ -30,19 +32,27 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
     handleMovieSearch();
     setMovies([]);
     setPageCounter(1);
+    setErrorMessage('');
   }, [debouncedSearchRequest]);
   const handleMovieSearch = async () => {
     if (!debouncedSearchRequest) return;
-    const movieResponse: { error: Error; data } = await getMoviesBySearchValue(
+    setIsLoading(true);
+
+    const movieResponse: { data } = await getMoviesBySearchValue(
       pageCounter,
-      searchRequest
+      searchRequest,
+      setIsErrorState
     );
-    if (movieResponse.error) {
-      setIsErrorState(true);
+
+    if (movieResponse.data?.data?.Error) {
+      setErrorMessage(movieResponse.data?.data?.Error);
     } else {
-      movieResponse?.data &&
-        setMovies([...movies, ...formatMovieResponse(movieResponse.data)]);
+      setMovies([
+        ...movies,
+        ...formatMovieResponse(movieResponse.data?.data?.Search),
+      ]);
     }
+    setIsLoading(false);
   };
 
   const handleUpVoteMovie = (movieId) => {
@@ -77,6 +87,9 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
           />
         </Col>
       </Row>
+      {isLoading && <Notification>LOADING...</Notification>}
+      {errorMessage && <Notification>{errorMessage}</Notification>}
+
       <SearchResult
         searchRequest={searchRequest}
         movies={movies}

@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { MovieItemInterface } from './interfaces';
 import { OMDB } from '@scribbr-assessment-full-stack/common';
 type GetMovieResponseType = {
   error: Error;
-  data: MovieItemInterface[];
+  data: Object;
 };
 
 export const getMoviesBySearchValue = (
   pageCount: number,
-  searchValue: string
+  searchValue: string,
+  setIsErrorState: (val: boolean) => void
 ) => {
   const request = `${OMDB.URL}?apikey=${OMDB.API_KEY}&s=${searchValue}&page=${pageCount}`;
 
@@ -17,10 +17,11 @@ export const getMoviesBySearchValue = (
     .then((response): GetMovieResponseType => {
       return {
         error: null,
-        data: response.data?.Search,
+        data: response,
       };
     })
     .catch(function (error: Error): GetMovieResponseType {
+      setIsErrorState(true);
       return {
         error: error,
         data: [],
