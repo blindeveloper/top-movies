@@ -11,7 +11,7 @@ import {
   UpVote,
   ActionWrapper,
 } from './StyledMovieItem';
-
+// [INFO] MovieItem is covering both cases with up voting and adding to list functionality
 const MovieItem: React.FC<MovieItemProps> = ({
   movie,
   handleAddMovieToTopList,

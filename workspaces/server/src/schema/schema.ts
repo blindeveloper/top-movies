@@ -17,6 +17,7 @@ interface MovieItemInterface {
   popularity?: number;
 }
 
+//[INFO] saving data in memory here, on every server reload data gonna be lost
 let topMoviesList: Object = {};
 
 const movieTypeFields = {

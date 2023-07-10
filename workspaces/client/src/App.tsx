@@ -12,6 +12,7 @@ const App: React.FC = () => {
   return (
     <>
       {isErrorState ? (
+        // [INFO] added ErrorMessage component in case if API will throw error
         <ErrorMessage />
       ) : (
         <Container fluid>

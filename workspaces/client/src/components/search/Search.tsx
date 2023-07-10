@@ -15,13 +15,15 @@ import TopMoviesList from '../topMoviesList/TopMoviesList';
 const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
   const [addTopMovie] = useMutation(ADD_TOP_MOVIE);
   const topMovies = useQuery(GET_TOP_MOVIES);
-  const [uvVoteMovie] = useMutation(UP_VOTE_MOVIE);
+  const [upVoteMovie] = useMutation(UP_VOTE_MOVIE);
 
   const [movies, setMovies] = useState<MovieItemInterface[]>([]);
   const [searchRequest, setSearchRequest] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [pageCounter, setPageCounter] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  //[INFO] using debounce here to avoid triggering API on every letter change
+  //want to trigger it only when word is finished
   const [debouncedSearchRequest] = useDebounce(searchRequest, DEBOUNCE_TIMER);
 
   useEffect(() => {
@@ -30,10 +32,14 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
 
   useEffect(() => {
     handleMovieSearch();
+    resetToInitState();
+  }, [debouncedSearchRequest]);
+
+  const resetToInitState = () => {
     setMovies([]);
     setPageCounter(1);
     setErrorMessage('');
-  }, [debouncedSearchRequest]);
+  };
   const handleMovieSearch = async () => {
     if (!debouncedSearchRequest) return;
     setIsLoading(true);
@@ -56,7 +62,7 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
   };
 
   const handleUpVoteMovie = (movieId) => {
-    uvVoteMovie({
+    upVoteMovie({
       variables: {
         id: movieId,
       },
@@ -87,6 +93,7 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
           />
         </Col>
       </Row>
+      {/* [INFO] added loading and error components for better user experience */}
       {isLoading && <Notification>LOADING...</Notification>}
       {errorMessage && <Notification>{errorMessage}</Notification>}
       <SearchResult
