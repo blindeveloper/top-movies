@@ -2,7 +2,7 @@ import axios from 'axios';
 import { OMDB } from '@scribbr-assessment-full-stack/common';
 type GetMovieResponseType = {
   error: Error;
-  data: Object;
+  data: object;
 };
 
 export const getMoviesBySearchValue = (

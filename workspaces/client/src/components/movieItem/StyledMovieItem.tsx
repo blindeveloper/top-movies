@@ -8,14 +8,13 @@ export const NoPoster = styled.span`
 `;
 
 export const MovieItemWrapper = styled.div`
-  padding: 5px 10px;
+  padding: 10px;
   border-radius: 6px;
-  margin-bottom: 20px;
   min-height: 50px;
   &:hover {
     background-color: #f5fafe;
     button {
-      display: block;
+      visibility: visible;
     }
   }
 `;
@@ -26,7 +25,7 @@ export const MovieItemSubtitle = styled.span`
   color: gray;
 `;
 export const AddToList = styled.button`
-  display: none;
+  visibility: hidden;
   background-color: #05113d;
   border-radius: 6px;
   color: white;
@@ -43,5 +42,7 @@ export const UpVote = styled.button`
   border: none;
   padding: 5px;
   cursor: pointer;
-  width: 100%;
+`;
+export const ActionWrapper = styled.div`
+  text-align: right;
 `;

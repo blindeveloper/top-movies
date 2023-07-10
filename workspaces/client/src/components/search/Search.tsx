@@ -89,7 +89,6 @@ const Search: React.FC<SearchProps> = ({ setIsErrorState }) => {
       </Row>
       {isLoading && <Notification>LOADING...</Notification>}
       {errorMessage && <Notification>{errorMessage}</Notification>}
-
       <SearchResult
         searchRequest={searchRequest}
         movies={movies}

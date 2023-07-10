@@ -10,7 +10,6 @@ export const SearchInput = styled.input`
   border-radius: 6px;
   border: 1px solid #7c84a3;
   padding: 0 10px;
-  margin-bottom: 20px;
 `;
 
 export const Notification = styled.p`

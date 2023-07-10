@@ -9,6 +9,7 @@ import {
   MovieItemSubtitle,
   AddToList,
   UpVote,
+  ActionWrapper,
 } from './StyledMovieItem';
 
 const MovieItem: React.FC<MovieItemProps> = ({
@@ -43,19 +44,21 @@ const MovieItem: React.FC<MovieItemProps> = ({
           </Row>
         </Col>
         <Col xs={3} data-testid={`${movie.id}-movie-action-button`}>
-          {movie.popularity ? (
-            <UpVote
-              onClick={() => handleUpVoteMovie(movie.id)}
-            >{`🤍 ${movie.popularity}`}</UpVote>
-          ) : (
-            <AddToList
-              onClick={() => {
-                handleAddMovieToTopList(movie);
-              }}
-            >
-              Add to List
-            </AddToList>
-          )}
+          <ActionWrapper>
+            {movie.popularity ? (
+              <UpVote
+                onClick={() => handleUpVoteMovie(movie.id)}
+              >{`🤍 ${movie.popularity}`}</UpVote>
+            ) : (
+              <AddToList
+                onClick={() => {
+                  handleAddMovieToTopList(movie);
+                }}
+              >
+                Add to List
+              </AddToList>
+            )}
+          </ActionWrapper>
         </Col>
       </Row>
     </MovieItemWrapper>

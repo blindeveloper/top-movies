@@ -32,8 +32,6 @@ const MovieType = new GraphQLObjectType({
   fields: () => movieTypeFields,
 });
 
-//TODO cover with tests
-//TODO cover with types
 const getTopMovieListAsArray = () => {
   let topMoviesArray: MovieItemInterface[] = [];
   for (const [key, value] of Object.entries(topMoviesList)) {

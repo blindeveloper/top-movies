@@ -27,13 +27,12 @@
 18. [DONE]Handle upvote response. [data + error state]
 19. [DONE]Show upvoted movie in the list if 200
 20. [DONE]Send upvote movie request if on addTopMovie request, movie already exists in the list
-21. Write tests upvoting logic
+21. [DONE]Write tests for upvote to be on screen
 
 ### [TM-0004] I want to sort movies
 
 21. [DONE] Render list sorted by the number of upvotes
 22. [DONE] Trigger sorting functionality on each upvote event
-23. Write tests for sorting logic
 
 ### Movie schema
 
