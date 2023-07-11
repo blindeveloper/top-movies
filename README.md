@@ -55,6 +55,10 @@
 `addTopMovie(movie) => movie`
 `upVoteMovie(id) => movie`
 
+### API documentation
+
+http://localhost:3000/graphql
+
 ### ---------------------------------------------
 
 # Scribbr's full-stack assessment - Scribbr's favorite movies
